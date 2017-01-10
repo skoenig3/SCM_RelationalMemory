@@ -245,7 +245,7 @@ for trlop=1:size(per,2)
             try
                 pupildata{trlop} = trlepp(2:2:(2*floor(picend/samprate)-1));%odd indexes contains nothing but noise
             catch
-                error('Unknown reason EOG and pic duration do not line up')
+                %error('Unknown reason EOG and pic duration do not line up')
             end
         end
     end

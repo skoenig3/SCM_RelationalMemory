@@ -4,7 +4,7 @@ function SCMRM_ROIanalysis(cortexfile,itemfile,figure_dir,data_dir,ROI_dir,img_d
 % of fixations and the amount of time spent in the ROI. ROIs are determined
 % with computer assistance using scmgui_RM.m.
 
-ploteyetraces = false;%set to false if don't want to plot eye traces on individual images
+ploteyetraces = true;%set to false if don't want to plot eye traces on individual images
 
 %---Import Data--%
 load([data_dir cortexfile(1:8) '_' cortexfile(10) '-fixation.mat']);
@@ -27,6 +27,7 @@ all_time = zeros(5,7000);%novel, familiar, replaced, moved,new_moved
 all_time_points = zeros(5,7000);
 
 setname = ['SCM' itemfile(6:7)];
+
 imageX = 800; %horiztonal image size
 imageY = 600; %vertical image size
 for img = 1:36
