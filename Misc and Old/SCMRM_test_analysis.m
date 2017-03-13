@@ -1,8 +1,8 @@
 % test to see if ListRM was running correctly without a monkey present
 cd('C:\Users\seth.koenig\Documents\MATLAB\SCM_RelationalMemory\Misc and Old\');
 data_dir = pwd;
-data_dir = 'R:\Buffalo Lab\Cortex Data\Vivian';
-[time_arr,event_arr,eog_arr,epp_arr,header,trialcount]  = get_ALLdata([data_dir '\PW150922.2']);
+data_dir = '\\towerexablox.wanprc.org\Buffalo\Cortex Data\Manfred';
+[time_arr,event_arr,eog_arr,epp_arr,header,trialcount]  = get_ALLdata([data_dir '\MF170215.2']);
 
 ITMFile = 'C:\Users\seth.koenig\Documents\MATLAB\SCM_RelationalMemory\Image Sets\SCMRM01.itm';
 CNDFile = 'C:\Users\seth.koenig\Documents\MATLAB\SCM_RelationalMemory\SCMRM.cnd';

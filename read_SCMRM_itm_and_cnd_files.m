@@ -4,8 +4,8 @@ function [itmlist,clrchng_locations,first_img_item,imgs,image_names,trialtype] =
 % are associated with which condition (itmlist) since conditions are randomly
 % organized.
 
-ITMFile = ['\\research.wanprc.org\research\Buffalo Lab\eblab\Cortex Programs\SCM Relational Memory Project\Item Files\' itemfile];
-CNDFile = '\\research.wanprc.org\research\Buffalo Lab\eblab\Cortex Programs\SCM Relational Memory Project\SCMRM.cnd';
+ITMFile = ['\\towerexablox.wanprc.org\Buffalo\eblab\Cortex Programs\SCM Relational Memory Project\Item Files\' itemfile];
+CNDFile = '\\towerexablox.wanprc.org\Buffalo\eblab\Cortex Programs\SCM Relational Memory Project\SCMRM.cnd';
 
 itmfil=[];
 h =fopen(ITMFile);
