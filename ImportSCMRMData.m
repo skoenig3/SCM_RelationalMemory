@@ -20,15 +20,15 @@ imageY = 600; %vertical image size
 
 %---Import Cortex data file---%
 if strcmpi(cortexfile(1:2),'PW')
-    cortexfile = ['\\towerexablox.wanprc.org\Buffalo\Cortex Data\Vivian\' cortexfile];
+    cortexfile = ['P:\Cortex Data\Vivian\' cortexfile];
 elseif strcmpi(cortexfile(1:2),'TT')
-    cortexfile = ['\\towerexablox.wanprc.org\Buffalo\Cortex Data\Timmy\' cortexfile];
+    cortexfile = ['P:\Cortex Data\Timmy\' cortexfile];
 elseif strcmpi(cortexfile(1:2),'RR')
-    cortexfile = ['\\towerexablox.wanprc.org\Buffalo\Cortex Data\Red\' cortexfile];
+    cortexfile = ['P:\Cortex Data\Red\' cortexfile];
 elseif strcmpi(cortexfile(1:2),'TO')
-    cortexfile = ['\\towerexablox.wanprc.org\Buffalo\Cortex Data\Tobii\' cortexfile];
+    cortexfile = ['P:\Cortex Data\Tobii\' cortexfile];
 elseif strcmpi(cortexfile(1:2),'MF')
-    cortexfile = ['\\towerexablox.wanprc.org\Buffalo\Cortex Data\Manfred\' cortexfile];
+    cortexfile = ['P:\Cortex Data\Manfred\' cortexfile];
 end
 
 

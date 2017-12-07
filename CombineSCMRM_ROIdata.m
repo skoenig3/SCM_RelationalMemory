@@ -11,11 +11,13 @@ if strcmp(cortexfiles{1},'All') %if analyzing data across monkeys.
     all_sets_Time3 = NaN(length(cortexfiles)-1,4);
     all_sets_Time15 = NaN(length(cortexfiles)-1,4);
     all_time_sets = zeros(5,7000);
-    
+    prop_all_time = NaN(length(cortexfiles)-1,5);
     numsets = length(cortexfiles)-1;
+    
     
     for sets = 2:length(cortexfiles)
         load([data_dir cortexfiles{sets}(1:8) '_' cortexfiles{sets}(10) '-ROIdata.mat'])
+        
         
         for type = 1:4
             %nans appear if monkey looked way during the period of interest
@@ -27,6 +29,7 @@ if strcmp(cortexfiles{1},'All') %if analyzing data across monkeys.
             all_sets_Time15(sets-1,type) = 100*nanmean(Time15_ROI_timeWindow{type});
         end
         all_time_sets = all_time_sets +all_time;
+        prop_all_time(sets-1,:) = mean(all_time');
     end
     all_time_sets = all_time_sets/numsets;
     

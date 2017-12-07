@@ -17,16 +17,28 @@ img_dir = 'C:\Users\seth.koenig\Documents\MATLAB\SCM_RelationalMemory\Image Sets
 %     'PW160411.2','PW160412.2','PW160413.2','PW160414.2','PW160415.2',...
 %     'PW160418.2','PW160419.2','PW160420.2','PW160421.2','PW160422.2'};
 
-pre_files =      {'RR151027.2','RR151026.2','RR151023.2','RR151022.2',...
-    'RR151021.2','RR151020.2','RR151019.2','RR151016.2',...
-    'RR151015.3','RR151014.2','RR151013.2','RR151009.2',...
-    'RR151008.2','RR151007.2','RR151005.2','RR151002.2',...
-    'RR151001.2'};
-post_files = {'RR160425.2','RR160426.2','RR160701.2','RR160706.2','RR160707.2',...
-    'RR160708.2','RR160714.2','RR160715.2','RR160718.2','RR160721.2',...
-    'RR160725.2','RR160726.2','RR160727.2','RR160728.2','RR160729.2',...
-    'RR160801.2','RR160803.2','RR160804.2','RR160805.2'};
+%---Red---%
+% pre_files =      {'RR151027.2','RR151026.2','RR151023.2','RR151022.2',...
+%     'RR151021.2','RR151020.2','RR151019.2','RR151016.2',...
+%     'RR151015.3','RR151014.2','RR151013.2','RR151009.2',...
+%     'RR151008.2','RR151007.2','RR151005.2','RR151002.2',...
+%     'RR151001.2'};
+% post_files = {'RR160425.2','RR160426.2','RR160701.2','RR160706.2','RR160707.2',...
+%     'RR160708.2','RR160714.2','RR160715.2','RR160718.2','RR160721.2',...
+%     'RR160725.2','RR160726.2','RR160727.2','RR160728.2','RR160729.2',...
+%     'RR160801.2','RR160803.2','RR160804.2','RR160805.2'};
+%
 
+%---Tobii---%
+pre_files = {'TO150901.2','TO150903.2','TO150904.3',...
+    'TO150908.2','TO150909.2','TO150910.2','TO150911.2',...
+    'TO150915.2','TO150916.2','TO150918.2',...
+    'TO151001.2','TO151002.2','TO151006.2','TO151007.2'};
+
+post_files = {'TO170620.2','TO170621.2','TO170622.2','TO170623.2',...
+    'TO170626.2','TO170627.2','TO170628.2','TO170629.2',...
+    'TO170630.2','TO170705.2','TO170706.2','TO170707.2',...
+    'TO170710.2','TO170711.2','TO170712.2'};
 
 
 %---Get Pre-Data---%
@@ -493,7 +505,7 @@ end
 ylim([0 60])
 legend('Pre-Novel','Pre-Repeat','Pre-Replaced','Pre-Moved','Post-Novel','Post-Repeat','Post-Replaced','Post-Moved');
 title([pre_files{1}(1:2) ' SCMRM Pre vs. Post: % of Time in ROI over Time'])
-save_and_close_fig(figure_dir,[pre_files{1}(1:2) '_SCMRM_PrePost_Percent_Time'])
+%save_and_close_fig(figure_dir,[pre_files{1}(1:2) '_SCMRM_PrePost_Percent_Time'])
 
 
 figure
@@ -583,7 +595,7 @@ ylabel('Percentage')
 title('% of All Time in ROI')
 
 subtitle([pre_files{1}(1:2) ': Absolute Pre vs. Post SCMRM'])
-save_and_close_fig(figure_dir,[pre_files{1}(1:2) '_SCMRM_Absolute_PrePost'])
+%save_and_close_fig(figure_dir,[pre_files{1}(1:2) '_SCMRM_Absolute_PrePost'])
 
 
 %normalize by repeat condition
@@ -685,7 +697,7 @@ ylabel('Relative Percentage to Novel Condition')
 title('% of All Time in ROI')
 
 subtitle([pre_files{1}(1:2) ': Relative Pre vs. Post SCMRM'])
-save_and_close_fig(figure_dir,[pre_files{1}(1:2) '_SCMRM_Relative_PrePost'])
+%save_and_close_fig(figure_dir,[pre_files{1}(1:2) '_SCMRM_Relative_PrePost'])
 
 
 %%
@@ -747,7 +759,7 @@ ylabel('Fixation Duration (ms)')
 title('Novel vs 2nd Presentation')
 
 subtitle([pre_files{1}(1:2) 'SCMRM Pre vs Post: Fixation Duration'])
-save_and_close_fig(figure_dir,[pre_files{1}(1:2) '_SCMRM_PrePost_FixationDuration'])
+%save_and_close_fig(figure_dir,[pre_files{1}(1:2) '_SCMRM_PrePost_FixationDuration'])
 
 
 %---Relative Fixation Duration---%
@@ -810,7 +822,7 @@ ylabel('Fixation Duration (ms)')
 title('Novel vs 2nd Presentation')
 
 subtitle([pre_files{1}(1:2) 'SCMRM Pre vs Post: Relative Fixation Duration'])
-save_and_close_fig(figure_dir,[pre_files{1}(1:2) '_SCMRM_PrePost_Relative_FixationDuration'])
+%save_and_close_fig(figure_dir,[pre_files{1}(1:2) '_SCMRM_PrePost_Relative_FixationDuration'])
 
 
 %---Absolute Saccade Amplitudes---%
@@ -867,7 +879,7 @@ ylabel('Saccade Ampitude (dva)')
 title('Novel vs 2nd Presentation')
 
 subtitle([pre_files{1}(1:2) ' SCMRM Pre vs Post: Saccade Amplitude'])
-save_and_close_fig(figure_dir,[pre_files{1}(1:2) '_SCMRM_PrePost_SaccadeAmplitude'])
+%save_and_close_fig(figure_dir,[pre_files{1}(1:2) '_SCMRM_PrePost_SaccadeAmplitude'])
 
 %---Relative Fixation Duration---%
 %normalize to First Saccade on Novel images
@@ -929,7 +941,7 @@ ylabel('Saccade Amplitude (dva)')
 title('Novel vs 2nd Presentation')
 
 subtitle([pre_files{1}(1:2) 'SCMRM Pre vs Post: Relative Saccade Amplitude'])
-save_and_close_fig(figure_dir,[pre_files{1}(1:2) '_SCMRM_PrePost_Relative_SaccadeAmplitude'])
+%save_and_close_fig(figure_dir,[pre_files{1}(1:2) '_SCMRM_PrePost_Relative_SaccadeAmplitude'])
 
 
 %---Plot Pupil Diameter Over Time---%

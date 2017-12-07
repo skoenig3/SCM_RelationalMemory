@@ -20,7 +20,14 @@ all_novel_sac_amp = NaN(length(cortex_files),50); %saccade amplitudes
 for file = 1:length(cortex_files)
     load([data_dir cortex_files{file}(1:8) '_' cortex_files{file}(end) '-fixation.mat'])
     setnum = str2double(itemfile(6:7));
-    
+%     
+%     %---Grab Important Vairables---%
+%     %load salience map
+%     if novrep < 10
+%         load([image_dir 'LRM' setnum '\S' setnum 'I0' num2str(novrep) '-saliencemap.mat'],'fullmap');
+%     else
+%         load([image_dir 'LRM' setnum '\S' setnum 'I' num2str(novrep) '-saliencemap.mat'],'fullmap');
+%     end
     
     nov_trial_by_trial_pupil = NaN(36,1500); %each trials pupil data
     rep_trial_by_trial_pupil = NaN(36,1500); %each trials pupil data
@@ -44,9 +51,9 @@ for file = 1:length(cortex_files)
         nov_img_on = nov_alltim(nov_allval == 23)-nov_alltim(nov_allval == 100);%image on relative to eye data start
         nov_img_off = nov_alltim(nov_allval == 24)-nov_alltim(nov_allval == 100);%image on relative to eye data start
         
-        nov_x = fixationstats{2*img-1}.XY(1,nov_img_on:nov_img_off);
-        nov_y = fixationstats{2*img-1}.XY(2,nov_img_on:nov_img_off);
-        nov_pupil = pupildata{2*img-1}(round(nov_img_on/5):round(nov_img_off/5));
+%         nov_x = fixationstats{2*img-1}.XY(1,nov_img_on:nov_img_off);
+%         nov_y = fixationstats{2*img-1}.XY(2,nov_img_on:nov_img_off);
+%         nov_pupil = pupildata{2*img-1}(round(nov_img_on/5):round(nov_img_off/5));
         
         nov_fix = fixationstats{2*img-1}.fixations;
         nov_fixtimes = fixationstats{2*img-1}.fixationtimes;
@@ -71,9 +78,9 @@ for file = 1:length(cortex_files)
         rep_img_on = rep_alltim(rep_allval == 23)-rep_alltim(rep_allval == 100);%image on relative to eye data start
         rep_img_off = rep_alltim(rep_allval == 24)-rep_alltim(rep_allval == 100);%image on relative to eye data start
         
-        rep_x = fixationstats{2*img}.XY(1,rep_img_on:rep_img_off);
-        rep_y = fixationstats{2*img}.XY(2,rep_img_on:rep_img_off);
-        rep_pupil = pupildata{2*img}(round(rep_img_on/5):round(rep_img_off/5));
+%         rep_x = fixationstats{2*img}.XY(1,rep_img_on:rep_img_off);
+%         rep_y = fixationstats{2*img}.XY(2,rep_img_on:rep_img_off);
+%         rep_pupil = pupildata{2*img}(round(rep_img_on/5):round(rep_img_off/5));
         
         rep_fix = fixationstats{2*img}.fixations;
         rep_fixtimes = fixationstats{2*img}.fixationtimes;
@@ -94,82 +101,82 @@ for file = 1:length(cortex_files)
         %---Find When the monkey Blinked,when monkey looked away---%
         %pupil values at 0 diameter
         
-        [nov_blink_ind,nov_nan_ind,nov_time_out] = findbad_eye_ind(nov_pupil,nov_x,1000);
-        [rep_blink_ind,rep_nan_ind,rep_time_out] = findbad_eye_ind(rep_pupil,rep_x,1000);
+%         [nov_blink_ind,nov_nan_ind,nov_time_out] = findbad_eye_ind(nov_pupil,nov_x,1000);
+%         [rep_blink_ind,rep_nan_ind,rep_time_out] = findbad_eye_ind(rep_pupil,rep_x,1000);
         
         %---Get Pupil Data over time---%
-        nov_pupil = pupildata{2*img-1}((round(nov_img_on/5)-100):round(nov_img_off/5)); %grab 500 ms before img on too
-        rep_pupil = pupildata{2*img}((round(rep_img_on/5)-100):round(rep_img_off/5)); %grab 500 ms before img on too
-        
-        %remove blinks from pupil data
-        if ~isempty(nov_blink_ind)
-            for b = 1:size(nov_blink_ind,1)
-                ind = nov_blink_ind(b,:);
-                ind(ind == 0) = [];
-                nov_pupil(ind+100) = NaN;
-            end
-        end
-        if ~isempty(rep_blink_ind)
-            for b = 1:size(rep_blink_ind,1)
-                ind = rep_blink_ind(b,:);
-                ind(ind == 0) = [];
-                rep_pupil(ind+100) = NaN;
-            end
-        end
+%         nov_pupil = pupildata{2*img-1}((round(nov_img_on/5)-100):round(nov_img_off/5)); %grab 500 ms before img on too
+%         rep_pupil = pupildata{2*img}((round(rep_img_on/5)-100):round(rep_img_off/5)); %grab 500 ms before img on too
+%         
+%         %remove blinks from pupil data
+%         if ~isempty(nov_blink_ind)
+%             for b = 1:size(nov_blink_ind,1)
+%                 ind = nov_blink_ind(b,:);
+%                 ind(ind == 0) = [];
+%                 nov_pupil(ind+100) = NaN;
+%             end
+%         end
+%         if ~isempty(rep_blink_ind)
+%             for b = 1:size(rep_blink_ind,1)
+%                 ind = rep_blink_ind(b,:);
+%                 ind(ind == 0) = [];
+%                 rep_pupil(ind+100) = NaN;
+%             end
+%         end
         
         %remove pupil data when not looking at picture
-        if ~isempty(nov_nan_ind)
-            for b = 1:size(nov_nan_ind,1)
-                ind = nov_nan_ind(b,:);
-                ind(ind == 0) = [];
-                nov_pupil(round(ind(1)/5):round(ind(end)/5)) = NaN;
-            end
-        end
-        if ~isempty(rep_nan_ind)
-            for b = 1:size(rep_nan_ind,1)
-                ind = rep_nan_ind(b,:);
-                ind(ind == 0) = [];
-                rep_pupil(round(ind(1)/5):round(ind(end)/5)) = NaN;
-            end
-        end
-        
-        %remove data after looked away too much
-        if ~isnan(nov_time_out)
-            nov_pupil(round(nov_time_out/5):end) = NaN;
-        end
-        if ~isnan(rep_time_out)
-            rep_pupil(round(rep_time_out/5):end) = NaN;
-        end
-        
-        %normalize to 100 ms of prestimulus levels
-        nov_pupil = nov_pupil./abs(mean(nov_pupil(81:100)))+2;
-        rep_pupil = rep_pupil./abs(mean(rep_pupil(81:100)))+2;
-        
-        %only look at the 1st 7 seconds the images is up
-        nov_pupil = nov_pupil(1:1500);
-        rep_pupil = rep_pupil(1:1500);
-        
-        nov_trial_by_trial_pupil(img,:) = nov_pupil;
-        if trialtype(2,img) == 2 %repeat
-            rep_trial_by_trial_pupil(img,:) = rep_pupil;
-        elseif trialtype(2,img) == 3 %replaced
-            rpl_trial_by_trial_pupil(img,:) = rep_pupil;
-        elseif trialtype(2,img) == 4 %moved
-            mvd_trial_by_trial_pupil(img,:) = rep_pupil;
-        else
-            error('unknown 2nd presentation type')
-        end
+%         if ~isempty(nov_nan_ind)
+%             for b = 1:size(nov_nan_ind,1)
+%                 ind = nov_nan_ind(b,:);
+%                 ind(ind == 0) = [];
+%                 nov_pupil(round(ind(1)/5):round(ind(end)/5)) = NaN;
+%             end
+%         end
+%         if ~isempty(rep_nan_ind)
+%             for b = 1:size(rep_nan_ind,1)
+%                 ind = rep_nan_ind(b,:);
+%                 ind(ind == 0) = [];
+%                 rep_pupil(round(ind(1)/5):round(ind(end)/5)) = NaN;
+%             end
+%         end
+%         
+%         %remove data after looked away too much
+%         if ~isnan(nov_time_out)
+%             nov_pupil(round(nov_time_out/5):end) = NaN;
+%         end
+%         if ~isnan(rep_time_out)
+%             rep_pupil(round(rep_time_out/5):end) = NaN;
+%         end
+%         
+%         %normalize to 100 ms of prestimulus levels
+%         nov_pupil = nov_pupil./abs(mean(nov_pupil(81:100)))+2;
+%         rep_pupil = rep_pupil./abs(mean(rep_pupil(81:100)))+2;
+%         
+%         %only look at the 1st 7 seconds the images is up
+%         nov_pupil = nov_pupil(1:1500);
+%         rep_pupil = rep_pupil(1:1500);
+%         
+%         nov_trial_by_trial_pupil(img,:) = nov_pupil;
+%         if trialtype(2,img) == 2 %repeat
+%             rep_trial_by_trial_pupil(img,:) = rep_pupil;
+%         elseif trialtype(2,img) == 3 %replaced
+%             rpl_trial_by_trial_pupil(img,:) = rep_pupil;
+%         elseif trialtype(2,img) == 4 %moved
+%             mvd_trial_by_trial_pupil(img,:) = rep_pupil;
+%         else
+%             error('unknown 2nd presentation type')
+%         end
         
         %---Calculate Fixation Durations and Saccade Amplitudes---%         
-        if ~isnan(nov_time_out)
-            post_attention_fix = find(nov_fixtimes(1,:) > nov_time_out);
-            nov_fixtimes(:,post_attention_fix) = [];
-        end
-        
-        if ~isnan(nov_time_out)
-            post_attention_fix = find(rep_fixtimes(1,:) > rep_time_out);
-            rep_fixtimes(:,post_attention_fix) = [];
-        end
+%         if ~isnan(nov_time_out)
+%             post_attention_fix = find(nov_fixtimes(1,:) > nov_time_out);
+%             nov_fixtimes(:,post_attention_fix) = [];
+%         end
+%         
+%         if ~isnan(nov_time_out)
+%             post_attention_fix = find(rep_fixtimes(1,:) > rep_time_out);
+%             rep_fixtimes(:,post_attention_fix) = [];
+%         end
  
         %fixation duration by ordinal fixation number
         nov_trial_by_trial_fixdurs(img,1:length(nov_fixtimes)) = nov_fixtimes(2,:)-nov_fixtimes(1,:)+1;
@@ -224,24 +231,24 @@ for file = 1:length(cortex_files)
 % 
 end
 %%
-%---Plot Pupil Diameter Over Time---%
-t = 1:5:7500;
-figure
-hold on
-dofill(t,all_nov_pupil/1000,'blue',1,60)
-dofill(t,all_rep_pupil/1000,'red',1,60)
-dofill(t,all_rpl_pupil/1000,'magenta',1,60)
-dofill(t,all_mvd_pupil/1000,'green',1,60)
-yl = ylim;
-plot([500 500],[0.75 1.1],'--k')
-hold off
-ylim(yl)
-xlabel('Time from Image Onset (ms)')
-ylabel('Normalize Pupil Data (a.u.)')
-set(gca,'Xtick',0:500:7500)
-set(gca,'XtickLabel',num2cell([0:500:7500]-500))
-legend('Novel','Repeat','Relaced','Moved')
-title([cortex_files{1}(1:2) ' : Normalized Pupil Horizontal Diameter'])
+% %---Plot Pupil Diameter Over Time---%
+% t = 1:5:7500;
+% figure
+% hold on
+% dofill(t,all_nov_pupil/1000,'blue',1,60)
+% dofill(t,all_rep_pupil/1000,'red',1,60)
+% dofill(t,all_rpl_pupil/1000,'magenta',1,60)
+% dofill(t,all_mvd_pupil/1000,'green',1,60)
+% yl = ylim;
+% plot([500 500],[0.75 1.1],'--k')
+% hold off
+% ylim(yl)
+% xlabel('Time from Image Onset (ms)')
+% ylabel('Normalize Pupil Data (a.u.)')
+% set(gca,'Xtick',0:500:7500)
+% set(gca,'XtickLabel',num2cell([0:500:7500]-500))
+% legend('Novel','Repeat','Relaced','Moved')
+% title([cortex_files{1}(1:2) ' : Normalized Pupil Horizontal Diameter'])
 
 %%
 %---Plot Fixation Durations By Fixation Number---%
