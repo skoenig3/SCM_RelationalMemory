@@ -86,14 +86,22 @@ clear,clc
 % item_files = {'SCMRM21.itm','SCMRM22.itm','SCMRM23.itm','SCMRM24.itm'};
 %
 % after added 5  dva fixation window on clr change trials
-cortex_files = {'MF170222.2','MF170223.2','MF170224.2','MF170227.2',...
-                'MF170301.2','MF170303.2','MF170306.2','MF170307.2',...
-                'MF170308.2','MF170309.2','MF170313.2','MF170314.2',...
-                'MF170315.2','MF170316.2','MF170317.2'};
-item_files = {'SCMRM25.itm','SCMRM26.itm','SCMRM27.itm','SCMRM28.itm',...
-              'SCMRM29.itm','SCMRM31.itm','SCMRM32.itm','SCMRM33.itm',...
-              'SCMRM34.itm','SCMRM35.itm','SCMRM36.itm','SCMRM37.itm',...
-              'SCMRM38.itm','SCMRM39.itm','SCMRM40.itm'};
+% cortex_files = {'MF170222.2','MF170223.2','MF170224.2','MF170227.2',...
+%                 'MF170301.2','MF170303.2','MF170306.2','MF170307.2',...
+%                 'MF170308.2','MF170309.2','MF170313.2','MF170314.2',...
+%                 'MF170315.2','MF170316.2','MF170317.2'};
+% item_files = {'SCMRM25.itm','SCMRM26.itm','SCMRM27.itm','SCMRM28.itm',...
+%               'SCMRM29.itm','SCMRM31.itm','SCMRM32.itm','SCMRM33.itm',...
+%               'SCMRM34.itm','SCMRM35.itm','SCMRM36.itm','SCMRM37.itm',...
+%               'SCMRM38.itm','SCMRM39.itm','SCMRM40.itm'};
+
+%---Manfred Post-Lesion
+cortex_files = {'MF180524.2','MF180525.2','MF180529.2','MF180530.2',...
+                'MF180531.2','MF180601.2'};%,'MF180604.2'};
+item_files = {'SCMRM02.itm','SCMRM03.itm','SCMRM04.itm',...
+              'SCMRM05.itm','SCMRM06.itm','SCMRM07.itm','SCMRM08.itm',...
+              'SCMRM09.itm','SCMRM10.itm','SCMRM11.itm','SCMRM12.itm',...
+              'SCMRM13.itm','SCMRM14.itm','SCMRM15.itm'};
 
 %all files
 % cortex_files = {'All','TO150901.2','TO150902.2','TO150903.2','TO150904.3',...
@@ -125,18 +133,18 @@ img_dir = 'C:\Users\seth.koenig\Documents\MATLAB\SCM_RelationalMemory\Image Sets
 
 %
 % %%---Preprocess all the ListRM data---%%%
-% for file = 8%5:length(cortex_files)
+% for file = 1:length(cortex_files)
 %     ImportSCMRMData(cortex_files{file},item_files{file},figure_dir,data_dir);
 % end
 
 %
 % %---Determine Amount of Time/# of Fixations in ROI---%%%
-% set(0,'DefaultFigureVisible','OFF');
-% for file =8%1:length(cortex_files)
-%     SCMRM_ROIanalysis(cortex_files{file},item_files{file},figure_dir,data_dir,ROI_dir,img_dir);
-% end
-% set(0,'DefaultFigureVisible','On');
-
+set(0,'DefaultFigureVisible','OFF');
+for file =1:length(cortex_files)
+    SCMRM_ROIanalysis(cortex_files{file},item_files{file},figure_dir,data_dir,ROI_dir,img_dir);
+end
+set(0,'DefaultFigureVisible','On');
+%%
 % %%
 % %%%---Combined Data across sets---%%%
 CombineSCMRM_ROIdata(cortex_files,data_dir,figure_dir)

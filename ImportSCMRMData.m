@@ -20,15 +20,15 @@ imageY = 600; %vertical image size
 
 %---Import Cortex data file---%
 if strcmpi(cortexfile(1:2),'PW')
-    cortexfile = ['P:\Cortex Data\Vivian\' cortexfile];
+    cortexfile = ['Z:\Cortex Data\Vivian\' cortexfile];
 elseif strcmpi(cortexfile(1:2),'TT')
-    cortexfile = ['P:\Cortex Data\Timmy\' cortexfile];
+    cortexfile = ['Z:\Cortex Data\Timmy\' cortexfile];
 elseif strcmpi(cortexfile(1:2),'RR')
-    cortexfile = ['P:\Cortex Data\Red\' cortexfile];
+    cortexfile = ['Z:\Cortex Data\Red\' cortexfile];
 elseif strcmpi(cortexfile(1:2),'TO')
-    cortexfile = ['P:\Cortex Data\Tobii\' cortexfile];
+    cortexfile = ['Z:\Cortex Data\Tobii\' cortexfile];
 elseif strcmpi(cortexfile(1:2),'MF')
-    cortexfile = ['P:\Cortex Data\Manfred\' cortexfile];
+    cortexfile = ['Z:\Cortex Data\Manfred\' cortexfile];
 end
 
 
